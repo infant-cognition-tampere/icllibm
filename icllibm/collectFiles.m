@@ -20,7 +20,11 @@ function collectFiles(parentdir, destinationdir, pattern)
             % valid non-folder file
             regextest = regexp(file.name, pattern, 'ONCE');
             if ~isempty(regextest)
-                movefile(filepath, destinationdir);
+                disp(strcat("Moving file:", filepath, " to ", destinationdir));
+                status = movefile(filepath, destinationdir);
+                if status == 0
+                    disp("Cannot move file.");
+                end
             end
         end
     end
